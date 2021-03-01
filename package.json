@@ -1,0 +1,21 @@
+{
+  "name": "ws-sandbox",
+  "version": "1.0.0",
+  "description": "Place for experimenting, breaking and perhaps fixing...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Nothing to build\" && exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warrensearle/ws-sandbox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warrensearle/ws-sandbox/issues"
+  },
+  "homepage": "https://github.com/warrensearle/ws-sandbox#readme"
+}
