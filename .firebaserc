@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ws-sandbox-develop"
+    "develop": "ws-sandbox-develop",
+    "staging": "ws-sandbox-staging",
+    "default": "ws-sandbox-staging"
   }
 }
