@@ -15,8 +15,8 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SANDBOX_C423C }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WS_SANDBOX_DEVELOP }}'
           channelId: live
-          projectId: sandbox-c423c
+          projectId: ws-sandbox-develop
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
