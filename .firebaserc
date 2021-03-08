@@ -3,5 +3,14 @@
     "develop": "ws-sandbox-develop",
     "staging": "ws-sandbox-staging",
     "default": "ws-sandbox-staging"
+  },
+  "targets": {
+    "ws-sandbox-develop": {
+      "hosting": {
+        "sandbox-1": [
+          "ws-sandbox-1"
+        ]
+      }
+    }
   }
 }
