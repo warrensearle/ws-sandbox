@@ -15,5 +15,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WS_SANDBOX_DEVELOP }}'
           projectId: ws-sandbox-develop
           target: sandbox-1
+          channelId: wazza
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
