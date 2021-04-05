@@ -31,6 +31,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.7"
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
           npm version patch -m "Bump version number to %s"
           git push
           node -p "require('./package.json').version"
