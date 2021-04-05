@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.DEPLOY_TOKEN }}'
+
       - name: Check package version
         id: package_version
         run: echo "::set-output name=current_version::$(node -p "require('./package.json').version")"
