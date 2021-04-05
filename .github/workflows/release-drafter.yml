@@ -21,3 +21,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
       - name: Update package version
         run: echo "Draft release version number is ${{ steps.release_drafter.outputs.tag_name }}"
+      # Use this GitHub Action
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          NEXT_VERSION: steps.release_drafter.outputs.tag_name
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
