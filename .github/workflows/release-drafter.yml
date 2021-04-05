@@ -26,9 +26,9 @@ jobs:
         run: echo "::set-output name=current_version::$(node -p "require('./package.json').version")"
 
       - name: Bump package version
-        if: steps.package_version.outputs.current_version != '1.0.9'
+        if: steps.package_version.outputs.current_version != '1.0.10'
         run: |
-          echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.9"
+          echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.10"
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           npm version patch -m "Bump version number to %s"
