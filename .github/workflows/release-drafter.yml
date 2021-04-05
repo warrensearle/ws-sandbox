@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
       # - uses: oleksiyrudenko/gha-git-credentials@v2-latest
       #   with:
