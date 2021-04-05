@@ -35,9 +35,8 @@ jobs:
           echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to ${{ steps.release_drafter.outputs.tag_name }}"
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
-          npm version patch -m "Bump version number to %s"
+          npm version ${{ steps.release_drafter.outputs.tag_name }} -m "Bump version number to %s"
           git push
-          node -p "require('./package.json').version"
 
       # # Use this GitHub Action
       # - name: Check package version
