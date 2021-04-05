@@ -15,10 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: package_version
+      - name: Check package version
+        id: package_version
         run: echo "::set-output name=current_version::$(node -p "require('./package.json').version")"
 
-      - name: Display package version
+      - name: Bump package version
+        if: steps.package_version.outputs.current_version != 1.0.5
         run: echo "Package version ${{ steps.package_version.outputs.current_version }}"
 
       # - name: Update package version
