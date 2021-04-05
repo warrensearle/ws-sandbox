@@ -25,6 +25,8 @@ jobs:
       - name: Update package version
         #run: echo "Draft release version number is ${{ steps.release_drafter.outputs.tag_name }}"
         run: npm version ${{steps.release_drafter.outputs.tag_name}} -m "Bump version number to %s"
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
       # # Use this GitHub Action
       # - name: Check package version
