@@ -20,8 +20,8 @@ jobs:
         run: echo "::set-output name=current_version::$(node -p "require('./package.json').version")"
 
       - name: Bump package version
-        if: steps.package_version.outputs.current_version != '1.0.5'
-        run: echo "Package version ${{ steps.package_version.outputs.current_version }}"
+        if: steps.package_version.outputs.current_version != '1.0.6'
+        run: echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.6"
 
       # - name: Update package version
       #   #run: echo "Draft release version number is ${{ steps.release_drafter.outputs.tag_name }}"
