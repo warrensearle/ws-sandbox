@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
       - uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
@@ -25,8 +27,11 @@ jobs:
 
       - name: Bump package version
         if: steps.package_version.outputs.current_version != '1.0.6'
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.6"
+          npm auth login
           npm version patch -m "Bump version number to %s"
           git push
           node -p "require('./package.json').version"
