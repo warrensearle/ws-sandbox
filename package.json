@@ -1,6 +1,6 @@
 {
   "name": "ws-sandbox",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Place for experimenting, breaking and perhaps fixing...",
   "main": "index.js",
   "scripts": {
