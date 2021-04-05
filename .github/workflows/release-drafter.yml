@@ -26,11 +26,11 @@ jobs:
         run: echo "::set-output name=current_version::$(node -p "require('./package.json').version")"
 
       - name: Bump package version
-        if: steps.package_version.outputs.current_version != '1.0.7'
+        if: steps.package_version.outputs.current_version != '1.0.8'
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
-          echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.7"
+          echo "Bump package version from ${{ steps.package_version.outputs.current_version }} to 1.0.8"
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           npm version patch -m "Bump version number to %s"
