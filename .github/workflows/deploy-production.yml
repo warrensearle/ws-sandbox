@@ -1,0 +1,17 @@
+# Placeholder for manual deploy script. Included for training purposes
+
+name: .Deploy to Production
+on:
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: 'Version number to deploy'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy
+      run: echo Deploy to production
