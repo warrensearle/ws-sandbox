@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       version_number:
-        description: 'Version number to deploy'
+        description: 'Version number (optional)'
         required: false
 
 jobs:
