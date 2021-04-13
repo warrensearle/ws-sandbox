@@ -1,14 +1,19 @@
-**Describe the changes included in this pull request**
+**Author checklist**
 
+- [ ] Include primary ticket number in title - e.g. "#123 New styling for widget" - and any additional tickets in description
+- [ ] Fill in the details below and delete as appropriate
+- [ ] Be proactive in getting your work approved 💪
+
+**What's included?**
+Describe the changes included in this pull request and highlight dependencies with other repos/tickets
 
 **Who should test?**
-- ✅ Product owners
+- ✅ Product owner
 - ✅ Developers
-- ✅ UAT
+- ✅ UTG
 
-**How to test**
+**How to test?**
 Describe the steps required to test & verify this change
-
 
 **Risk - how likely is this to impact other areas?**
 🟢 No risk - this is a self-contained piece of work
