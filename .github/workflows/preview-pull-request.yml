@@ -4,8 +4,8 @@ name: Preview pull request
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
-  issue_comment:
-    types: [created, edited]
+  # issue_comment:
+  #   types: [created, edited]
 
 jobs:
   pr_commented:
