@@ -8,15 +8,6 @@ on:
   #   types: [created, edited]
 
 jobs:
-  pr_commented:
-    # This job only runs for pull request comments
-    name: PR comment
-    if: ${{ github.event.issue.pull_request }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Comment on PR #${{ github.event.issue.number }}"
-
   preview:
     runs-on: ubuntu-latest
     steps:
@@ -28,4 +19,13 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - if: steps.check_preview_develop.outputs.triggered == 'true'
         run: echo Preview develop
+
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_staging
+        with:
+          trigger: 'preview:staging'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_staging.outputs.triggered == 'true'
+        run: echo Preview staging
 
