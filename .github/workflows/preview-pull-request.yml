@@ -14,7 +14,8 @@ jobs:
           trigger: '@preview/develop'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-
+      - name: View output
+        run: echo "Output - ${{ steps.check_preview_develop.outputs }}"
       - name: Preview develop
         if: steps.check_preview_develop.outputs.triggered == true
         run: echo Preview develop
