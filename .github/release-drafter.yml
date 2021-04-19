@@ -1,5 +1,14 @@
 name-template: '$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
+autolabeler:
+  - label: 'bugfix'
+    branch:
+      - '/fix\/.+/'
+    title:
+      - '/fix/i'
+  - label: 'enhancement'
+    branch:
+      - '/feature\/.+/'
 categories:
   - title: '🚀 Features'
     labels:
