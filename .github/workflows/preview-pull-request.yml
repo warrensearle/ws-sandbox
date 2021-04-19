@@ -2,9 +2,21 @@
 
 name: Preview pull request
 on:
-  [pull_request, issue_comment]
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Comment on PR #${{ github.event.issue.number }}"
+
   preview:
     runs-on: ubuntu-latest
     steps:
