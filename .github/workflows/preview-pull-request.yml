@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - if: steps.check_preview_develop.outputs.triggered == 'true'
-        run: echo Preview develop
+        run: echo "::set-env name=PREVIEW_ENVIRONMENT::develop"
 
       - uses: khan/pull-request-comment-trigger@master
         id: check_preview_staging
@@ -38,5 +38,4 @@ jobs:
       - if: steps.check_preview_production.outputs.triggered == 'true'
         run: echo Preview production
 
-      - run: echo "Secret ${{ secrets.GITHUB_TOKEN }}, array ${{ secrets['GITHUB' . '_TOKEN'] }}"
-
+      - run: echo "env ${{ env.PREVIEW_ENVIRONMENT }}"
