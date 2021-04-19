@@ -1,0 +1,19 @@
+# Builds and deploys to firebase hosting preview channel.
+
+name: Preview pull request
+'on': pull_request
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_develop
+        with:
+          trigger: '@preview/develop'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: Preview develop
+        if: steps.check_preview_develop.outputs.triggered
+        run: echo Preview develop
