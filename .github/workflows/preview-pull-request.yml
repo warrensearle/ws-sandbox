@@ -9,7 +9,7 @@ jobs:
   check_preview:
     runs-on: ubuntu-latest
     outputs:
-      preview_env: ${{ env.preview_env }}
+      environment: ${{ env.environment }}
     steps:
       - uses: khan/pull-request-comment-trigger@master
         id: check_preview_develop
