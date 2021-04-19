@@ -6,7 +6,7 @@ on:
     types: [opened, reopened, synchronize, edited]
 
 jobs:
-  preview:
+  check_preview:
     runs-on: ubuntu-latest
     outputs:
       preview_env: ${{ env.preview_env }}
@@ -18,29 +18,28 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - if: steps.check_preview_develop.outputs.triggered == 'true'
-        run: echo "preview_env=develop" >> $GITHUB_ENV
+        run: echo "environment=develop" >> $GITHUB_ENV
 
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_staging
+        with:
+          trigger: 'preview:staging'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_staging.outputs.triggered == 'true'
+        run: echo "environment=staging" >> $GITHUB_ENV
 
-      # - uses: khan/pull-request-comment-trigger@master
-      #   id: check_preview_staging
-      #   with:
-      #     trigger: 'preview:staging'
-      #   env:
-      #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      # - if: steps.check_preview_staging.outputs.triggered == 'true'
-      #   run: echo Preview staging
-
-      # - uses: khan/pull-request-comment-trigger@master
-      #   id: check_preview_production
-      #   with:
-      #     trigger: 'preview:production'
-      #   env:
-      #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      # - if: steps.check_preview_production.outputs.triggered == 'true'
-      #   run: echo Preview production
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_production
+        with:
+          trigger: 'preview:production'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_production.outputs.triggered == 'true'
+        run: echo "environment=production" >> $GITHUB_ENV
 
   debug:
     runs-on: ubuntu-latest
-    needs: preview
+    needs: check_preview
     steps:
-      - run: echo -${{ needs.preview.outputs.preview_env }}-
+      - run: echo Current preview env is ${{ needs.check_preview.outputs.environment }}
