@@ -1,8 +1,9 @@
 # Builds and deploys to firebase hosting preview channel.
 
 name: Preview pull request
-'on': pull_request
-
+on:
+  pull_request:
+  issue_comment:
 jobs:
   preview:
     runs-on: ubuntu-latest
