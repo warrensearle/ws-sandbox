@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - name: View output
-        run: echo "Output - ${{ toJSON(steps.check_preview_develop.outputs) }}"
+        run: echo "Output - ${{ steps.check_preview_develop.outputs.triggered }}"
       - name: Preview develop
         if: steps.check_preview_develop.outputs.triggered
         run: echo Preview develop
