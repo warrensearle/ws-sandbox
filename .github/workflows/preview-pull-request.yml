@@ -8,8 +8,8 @@ on:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    # outputs:
-    #   preview_env: ${{ env.preview_env }}
+    outputs:
+      preview_env: ${{ env.preview_env }}
     steps:
       - uses: khan/pull-request-comment-trigger@master
         id: check_preview_develop
@@ -39,9 +39,8 @@ jobs:
       # - if: steps.check_preview_production.outputs.triggered == 'true'
       #   run: echo Preview production
 
-      - run: echo ${{ env.preview_env }}
   debug:
     runs-on: ubuntu-latest
     needs: preview
     steps:
-      - run: echo -${{ env.preview_env }}-
+      - run: echo -${{ needs.preview.outputs.preview_env }}-
