@@ -15,5 +15,5 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Preview develop
-        if: steps.check_preview_develop.outputs.triggered
+        if: steps.check_preview_develop.outputs.triggered == true
         run: echo Preview develop
