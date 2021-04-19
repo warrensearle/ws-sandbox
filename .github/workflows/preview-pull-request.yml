@@ -26,9 +26,6 @@ jobs:
           trigger: 'preview:develop'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - name: View output
-        run: echo "Outputs.triggered = ${{ steps.check_preview_develop.outputs.triggered }}, isTrue = ${{ steps.check_preview_develop.outputs.triggered == true }}, isFalse = ${{ steps.check_preview_develop.outputs.triggered == false }}, isTrueString = ${{ steps.check_preview_develop.outputs.triggered == 'true' }}, isFalseString = ${{ steps.check_preview_develop.outputs.triggered == 'false' }}"
-      - name: Preview develop
-        if: steps.check_preview_develop.outputs.triggered
+      - if: steps.check_preview_develop.outputs.triggered == 'true'
         run: echo Preview develop
 
