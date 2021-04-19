@@ -29,6 +29,6 @@ jobs:
       - name: View output
         run: echo "Output - ${{ toJSON(steps.check_preview_develop.outputs) }}"
       - name: Preview develop
-        if: ${{ steps.check_preview_develop.outputs.triggered == true }}
+        if: steps.check_preview_develop.outputs.triggered
         run: echo Preview develop
 
