@@ -38,3 +38,5 @@ jobs:
       - if: steps.check_preview_production.outputs.triggered == 'true'
         run: echo Preview production
 
+      - run: echo 'Secret ${{ secrets.GITHUB_TOKEN }}'
+
