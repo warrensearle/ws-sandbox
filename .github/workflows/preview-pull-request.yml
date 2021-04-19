@@ -4,12 +4,12 @@ name: Preview pull request
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
-  # issue_comment:
-  #   types: [created, edited]
 
 jobs:
   preview:
     runs-on: ubuntu-latest
+    outputs:
+      preview_env: ${{ steps.check_preview_develop.outputs.ENVNAME + steps.check_preview_develop.outputs.ENVNAME }}
     steps:
       - uses: khan/pull-request-comment-trigger@master
         id: check_preview_develop
@@ -18,24 +18,30 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - if: steps.check_preview_develop.outputs.triggered == 'true'
-        run: echo "::set-env name=PREVIEW_ENVIRONMENT::develop"
+        run: echo "::set-output name=ENVNAME::develop"
 
-      - uses: khan/pull-request-comment-trigger@master
-        id: check_preview_staging
-        with:
-          trigger: 'preview:staging'
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - if: steps.check_preview_staging.outputs.triggered == 'true'
-        run: echo Preview staging
 
-      - uses: khan/pull-request-comment-trigger@master
-        id: check_preview_production
-        with:
-          trigger: 'preview:production'
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - if: steps.check_preview_production.outputs.triggered == 'true'
-        run: echo Preview production
+      # - uses: khan/pull-request-comment-trigger@master
+      #   id: check_preview_staging
+      #   with:
+      #     trigger: 'preview:staging'
+      #   env:
+      #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      # - if: steps.check_preview_staging.outputs.triggered == 'true'
+      #   run: echo Preview staging
 
-      - run: echo "env ${{ env.PREVIEW_ENVIRONMENT }}"
+      # - uses: khan/pull-request-comment-trigger@master
+      #   id: check_preview_production
+      #   with:
+      #     trigger: 'preview:production'
+      #   env:
+      #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      # - if: steps.check_preview_production.outputs.triggered == 'true'
+      #   run: echo Preview production
+
+      # - run: echo "env ${{ env.PREVIEW_ENVIRONMENT }}"
+  debug:
+    runs-on: ubuntu-latest
+    needs: preview
+    steps:
+      - run: echo -${{ needs.preview.outputs.preview_env }}-
