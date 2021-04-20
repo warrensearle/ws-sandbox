@@ -44,5 +44,7 @@ jobs:
     if: needs.check_preview.outputs.environment
     environment:
       name: ${{ needs.check_preview.outputs.environment }}
+    env:
+      environment: ${{ needs.check_preview.outputs.environment }}
     steps:
-      - run: echo Current preview test ${{ needs.check_preview.outputs.environment }}
+      - run: echo Current preview test ${{ env.environment }}
