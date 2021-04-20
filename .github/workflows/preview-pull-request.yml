@@ -44,4 +44,4 @@ jobs:
     environment:
       name: ${{ needs.check_preview.outputs.environment }}
     steps:
-      - run: echo Current preview env is ${{ secrets.SECRET_KEY }}
+      - run: echo Current preview test ${{ secrets.SECRET_KEY == 'dev secret' }}
