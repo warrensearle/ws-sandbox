@@ -6,7 +6,7 @@ on:
     inputs:
       version_number:
         description: 'Version number (optional)'
-        required: false
+        required: true
         default: ''
 
 jobs:
@@ -14,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Debug github
-      env:
-        CONTEXT: ${{ toJSON(github) }}
-      run: echo "$CONTEXT"
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.event.inputs.version_number }}
