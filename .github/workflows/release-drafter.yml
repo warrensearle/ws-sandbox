@@ -2,7 +2,6 @@ name: Release Drafter
 
 on:
   push:
-    # branches to consider in the event; optional, defaults to all
     branches:
       - master
     paths-ignore:
@@ -36,11 +35,3 @@ jobs:
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           npm version ${{ steps.release_drafter.outputs.tag_name }} -m "Bump version number to %s"
           git push
-
-      # # Use this GitHub Action
-      # - name: Check package version
-      #   uses: technote-space/package-version-check-action@v1
-      #   with:
-      #     NEXT_VERSION: steps.release_drafter.outputs.tag_name
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}

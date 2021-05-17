@@ -1,0 +1,50 @@
+# Builds and deploys to firebase hosting preview channel.
+
+name: Preview pull request
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+
+jobs:
+  check_preview:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ env.environment }}
+    steps:
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_develop
+        with:
+          trigger: 'preview:develop'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_develop.outputs.triggered == 'true'
+        run: echo "environment=develop" >> $GITHUB_ENV
+
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_staging
+        with:
+          trigger: 'preview:staging'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_staging.outputs.triggered == 'true'
+        run: echo "environment=staging" >> $GITHUB_ENV
+
+      - uses: khan/pull-request-comment-trigger@master
+        id: check_preview_production
+        with:
+          trigger: 'preview:production'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - if: steps.check_preview_production.outputs.triggered == 'true'
+        run: echo "environment=production" >> $GITHUB_ENV
+
+  preview:
+    runs-on: ubuntu-latest
+    needs: check_preview
+    if: needs.check_preview.outputs.environment
+    environment:
+      name: ${{ needs.check_preview.outputs.environment }}
+    env:
+      environment: ${{ needs.check_preview.outputs.environment }}
+    steps:
+      - run: echo Current preview test ${{ env.environment }}
