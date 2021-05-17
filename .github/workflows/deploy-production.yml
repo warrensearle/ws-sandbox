@@ -7,6 +7,7 @@ on:
       version_number:
         description: 'Version number (optional)'
         required: false
+        default: ''
 
 jobs:
   build:
@@ -17,5 +18,9 @@ jobs:
       env:
         CONTEXT: ${{ toJSON(github) }}
       run: echo "$CONTEXT"
+    - uses: actions/checkout@v2
+      with:
+        ref: github.event.inputs.version_number
+
     - name: Deploy
       run: echo Deploy to production
