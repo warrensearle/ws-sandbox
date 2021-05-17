@@ -20,7 +20,7 @@ jobs:
       run: echo "$CONTEXT"
     - uses: actions/checkout@v2
       with:
-        ref: github.event.inputs.version_number
+        ref: ${{ github.event.inputs.version_number }}
 
     - name: Deploy
       run: echo Deploy to production
